@@ -14,7 +14,8 @@ namespace WebApplication1.Models
             : base(options)
         {
         }
-        public DbSet<Value> TableValues { get; set; }
+        public DbSet<Value> TableValues { get; set; } 
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

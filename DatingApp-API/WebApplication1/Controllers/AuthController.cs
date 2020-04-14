@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegister userForRegister)
         {
-            // validate request
+            // validate request 
             userForRegister.username = userForRegister.username.ToLower();
 
             if ( await _repo.UserExists(userForRegister.username))
@@ -62,7 +62,6 @@ namespace WebApplication1.Controllers
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.UserName)
             };
-            string vvv = _config.GetSection("AppSettings:Token").Value;
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
@@ -81,7 +80,7 @@ namespace WebApplication1.Controllers
             return Ok(new
             {
                 token = tokenHandler.WriteToken(token)
-            }) ;
+            });
         } 
     }
 }

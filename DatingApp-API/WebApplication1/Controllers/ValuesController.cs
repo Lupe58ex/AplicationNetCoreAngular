@@ -19,7 +19,9 @@ namespace WebApplication1.Controllers
         public ValuesController(netcoreContext context)
         {
             _context = context; 
-        }   
+        }
+
+        [AllowAnonymous]
         // GET api/values
         [HttpGet]
         public async Task<IActionResult> GetValues()

@@ -11,7 +11,7 @@ namespace WebApplication1.Data
         [Required]
         public string username { get; set; }
         [Required]
-        [StringLength(8,MinimumLength = 4, ErrorMessage = "you must entre at least 4 characters")]
+        [StringLength(8,MinimumLength = 4, ErrorMessage = "You must enter at least 4 characters")]
         public string password { get; set; }
     }
 }

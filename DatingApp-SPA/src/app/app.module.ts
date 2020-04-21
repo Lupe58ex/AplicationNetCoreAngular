@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule, HttpClient} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import {TabsModule} from 'ngx-bootstrap/tabs';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -26,6 +26,9 @@ import { UserService } from './_services/user.service';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter()
 {
@@ -42,13 +45,15 @@ export function tokenGetter()
       ListsComponent,
       MessagesComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
       TabsModule.forRoot(),
+      BsDropdownModule.forRoot(),
       BrowserAnimationsModule,
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
@@ -65,9 +70,11 @@ export function tokenGetter()
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
+      PreventUnsavedChanges,
       UserService,
       MemberDetailResolver,
-      MemberListResolver
+      MemberListResolver,
+      MemberEditResolver
    ],
    bootstrap: [
       AppComponent

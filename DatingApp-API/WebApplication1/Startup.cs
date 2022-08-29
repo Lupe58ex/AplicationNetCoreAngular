@@ -40,6 +40,7 @@ namespace WebApplication1
             services.AddDbContext<netcoreContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddConnections();
             services.AddScoped<IAuthRepository, AuthRepository>();
